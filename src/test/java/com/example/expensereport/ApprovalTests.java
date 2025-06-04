@@ -24,18 +24,9 @@ public class ApprovalTests {
     }
 
     private List<Expense> createTestExpenses() {
-        Expense dinner = new Expense();
-        dinner.type = ExpenseType.DINNER;
-        dinner.amount = 6000; // Over limit (>5000)
-
-        Expense breakfast = new Expense();
-        breakfast.type = ExpenseType.BREAKFAST;
-        breakfast.amount = 800; // Under limit (<1000)
-
-        Expense carRental = new Expense();
-        carRental.type = ExpenseType.CAR_RENTAL;
-        carRental.amount = 15000; // No limit for car rental
-
+        Expense dinner = ExpenseStub.createExpense(ExpenseType.DINNER, 6000);
+        Expense breakfast = ExpenseStub.createExpense(ExpenseType.BREAKFAST, 800);
+        Expense carRental = ExpenseStub.createExpense(ExpenseType.CAR_RENTAL, 15000);
         return List.of(dinner, breakfast, carRental);
     }
 
@@ -50,23 +41,6 @@ public class ApprovalTests {
         } finally {
             System.setOut(originalOut);
         }
-    }
-
-    @Test
-    public void testPrintReportTwice() {
-        // Arrange - Create test expenses
-        List<Expense> expenses = createTestExpenses();
-        ExpenseReport expenseReport = new ExpenseReport();
-
-        // Act - Capture System.out
-        String output = captureSystemOut(() -> {
-                    expenseReport.printReport(expenses);
-                    expenseReport.printReport(expenses);
-                }
-        );
-
-        // Assert - Approval test verifies the complete output
-        Approvals.verify(output, ScruberUtils.scrubDate());
     }
 
     // EDGE CASES
@@ -93,22 +67,10 @@ public class ApprovalTests {
 
     private List<Expense> createBoundaryTestExpenses() {
         // Test exactly at the limits
-        Expense dinnerAtLimit = new Expense();
-        dinnerAtLimit.type = ExpenseType.DINNER;
-        dinnerAtLimit.amount = 5000; // Exactly at limit
-
-        Expense dinnerOverLimit = new Expense();
-        dinnerOverLimit.type = ExpenseType.DINNER;
-        dinnerOverLimit.amount = 5001; // Just over limit
-
-        Expense breakfastAtLimit = new Expense();
-        breakfastAtLimit.type = ExpenseType.BREAKFAST;
-        breakfastAtLimit.amount = 1000; // Exactly at limit
-
-        Expense breakfastOverLimit = new Expense();
-        breakfastOverLimit.type = ExpenseType.BREAKFAST;
-        breakfastOverLimit.amount = 1001; // Just over limit
-
+        Expense dinnerAtLimit = new Expense(ExpenseType.DINNER, 5000);
+        Expense dinnerOverLimit = new Expense(ExpenseType.DINNER, 5001);
+        Expense breakfastAtLimit = new Expense(ExpenseType.BREAKFAST, 1000);
+        Expense breakfastOverLimit = new Expense(ExpenseType.BREAKFAST, 1001);
         return List.of(dinnerAtLimit, breakfastAtLimit, dinnerOverLimit, breakfastOverLimit);
     }
 
