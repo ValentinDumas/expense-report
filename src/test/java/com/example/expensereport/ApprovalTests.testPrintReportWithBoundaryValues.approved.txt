@@ -1,0 +1,7 @@
+Expenses <DATE>
+Dinner	5000	 
+Breakfast	1000	 
+Dinner	5001	X
+Breakfast	1001	X
+Meal expenses: 12002
+Total expenses: 12002

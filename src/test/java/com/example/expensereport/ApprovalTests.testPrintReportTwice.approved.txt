@@ -4,3 +4,9 @@ Breakfast	800
 Car Rental	15000	 
 Meal expenses: 6800
 Total expenses: 21800
+Expenses <DATE>
+Dinner	6000	X
+Breakfast	800	 
+Car Rental	15000	 
+Meal expenses: 6800
+Total expenses: 21800
