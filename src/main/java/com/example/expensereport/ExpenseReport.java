@@ -8,6 +8,24 @@ enum ExpenseType {
 }
 
 record Expense(ExpenseType type, int amount) {
+    String getLabel() {
+        String expenseName = switch (type()) {
+            case DINNER -> "Dinner";
+            case BREAKFAST -> "Breakfast";
+            case CAR_RENTAL -> "Car Rental";
+            case FIBER -> "Fibber";
+        };
+        return expenseName;
+    }
+
+    boolean isOverLimit() {
+        return type() == ExpenseType.DINNER && amount() > 5000
+                || type() == ExpenseType.BREAKFAST && amount() > 1000;
+    }
+
+    boolean isMeal() {
+        return type() == ExpenseType.DINNER || type() == ExpenseType.BREAKFAST;
+    }
 }
 
 public class ExpenseReport {
@@ -18,24 +36,13 @@ public class ExpenseReport {
         System.out.println("Expenses " + new Date());
 
         for (Expense expense : expenses) {
-            if (expense.type() == ExpenseType.DINNER || expense.type() == ExpenseType.BREAKFAST) {
+            if (expense.isMeal()) {
                 mealExpenses += expense.amount();
             }
 
-            String expenseName = "";
-            switch (expense.type()) {
-                case DINNER:
-                    expenseName = "Dinner";
-                    break;
-                case BREAKFAST:
-                    expenseName = "Breakfast";
-                    break;
-                case CAR_RENTAL:
-                    expenseName = "Car Rental";
-                    break;
-            }
+            String expenseName = expense.getLabel();
 
-            String mealOverExpensesMarker = expense.type() == ExpenseType.DINNER && expense.amount() > 5000 || expense.type() == ExpenseType.BREAKFAST && expense.amount() > 1000 ? "X" : " ";
+            String mealOverExpensesMarker = expense.isOverLimit() ? "X" : " ";
 
             System.out.println(expenseName + "\t" + expense.amount() + "\t" + mealOverExpensesMarker);
 
