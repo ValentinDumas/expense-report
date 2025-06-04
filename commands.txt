@@ -1,4 +1,8 @@
-// ...
+// sonar
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=expense-report \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
 // pitest
 mvn test-compile org.pitest:pitest-maven:mutationCoverage
