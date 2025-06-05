@@ -23,20 +23,29 @@ public class ApprovalTests {
     }
 
     private List<Expense> createTestExpenses() {
-        Expense dinner = new Expense();
-        dinner.type = ExpenseType.DINNER;
-        dinner.amount = 6000; // Over limit (>5000)
+        Expense dinnerUnderLimit = new Expense();
+        dinnerUnderLimit.type = ExpenseType.DINNER;
+        dinnerUnderLimit.amount = 4000; // Over limit (>5000)
 
-        Expense breakfast = new Expense();
-        breakfast.type = ExpenseType.BREAKFAST;
-        breakfast.amount = 800; // Under limit (<1000)
+        Expense breakfastUnderLimit = new Expense();
+        breakfastUnderLimit.type = ExpenseType.BREAKFAST;
+        breakfastUnderLimit.amount = 800; // Under limit (<1000)
 
-        Expense carRental = new Expense();
-        carRental.type = ExpenseType.CAR_RENTAL;
-        carRental.amount = 15000; // No limit for car rental
+        Expense carRentalNoLimit = new Expense();
+        carRentalNoLimit.type = ExpenseType.CAR_RENTAL;
+        carRentalNoLimit.amount = 15000; // No limit for car rental
 
-        return List.of(dinner, breakfast, carRental);
+        // Boundary test expenses
+        /*
+        Expense dinnerAtLimit = new Expense(ExpenseType.DINNER, 5000);
+        Expense dinnerOverLimit = new Expense(ExpenseType.DINNER, 5001);
+        Expense breakfastAtLimit = new Expense(ExpenseType.BREAKFAST, 1000);
+        Expense breakfastOverLimit = new Expense(ExpenseType.BREAKFAST, 1001);
+        return List.of(dinnerUnderLimit,breakfastUnderLimit,carRentalNoLimit, dinnerAtLimit, breakfastAtLimit, dinnerOverLimit, breakfastOverLimit);
+         */
+        return List.of(dinnerUnderLimit, breakfastUnderLimit, carRentalNoLimit);
     }
+
 
     private String captureSystemOut(Runnable action) {
         PrintStream originalOut = System.out;
