@@ -1,6 +1,6 @@
 // sonar
 mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=expense-report \
+  -Dsonar.projectKey=trivia \
   -Dsonar.host.url=http://localhost:9000 \
   -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
