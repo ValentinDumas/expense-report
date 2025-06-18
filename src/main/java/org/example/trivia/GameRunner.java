@@ -9,6 +9,9 @@ public class GameRunner {
   public static void main(String[] args) {
     Game aGame = new Game();
 
+    aGame.add("Chet");
+    aGame.add("Pa);
+    aGame.add("Sue");
 
     Random rand = new Random();
 
