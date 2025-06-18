@@ -36,7 +36,7 @@ public class Game {
 
   public boolean add(String playerName) {
 
-    players.add(playerme);
+    players.add(playerNme);
     places[howManyPlayers()] = 0;
     purses[howManyPlayers()] = 0;
     inPenaltyBox[howManyPlayers()] = false;
