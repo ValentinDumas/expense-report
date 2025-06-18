@@ -39,7 +39,7 @@ public class Game {
     players.add(playerName);
     places[howManyPlayers()] = 0;
     purses[howManyPlayers()] = 0;
-    inPenaltyBox[howManyPlayers()] = false;
+    inPenaltyBox[howManyPlayers()] = true;
 
     System.out.println(playerName + " was added");
     System.out.println("They are player number " + players.size());
