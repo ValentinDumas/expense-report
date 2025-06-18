@@ -11,7 +11,7 @@ public class GameRunner {
 
     aGame.add("Chet");
     aGame.add("Pat");
-    aGame.dd("Sue");
+    aGame.add("Sue");
 
     Random rand = new Random();
 
