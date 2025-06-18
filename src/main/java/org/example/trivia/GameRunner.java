@@ -10,7 +10,7 @@ public class GameRunner {
     Game aGame = new Game();
 
     aGame.add("Chet");
-    aGame.add("Pa");
+    aGame.add("Pat");
     aGame.add("Sue");
 
     Random rand = new Random();
