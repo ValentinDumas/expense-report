@@ -1,5 +1,9 @@
 package org.example.trivia;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -43,6 +47,26 @@ public class Game {
 
     System.out.println(playerName + " was added");
     System.out.println("They are player number " + players.size());
+
+    // JDBC call to store the new player in the database
+    try {
+      // Example: replace with actual JDBC URL, user and password
+      Connection connection =
+          DriverManager.getConnection("jdbc:mysql://localhost:3306/trivia", "user", "password");
+      PreparedStatement stmt =
+          connection.prepareStatement(
+              "INSERT INTO players (name, position, purse, in_penalty_box) VALUES (?, ?, ?, ?)");
+      stmt.setString(1, playerName);
+      stmt.setInt(2, 0);
+      stmt.setInt(3, 0);
+      stmt.setBoolean(4, false);
+      stmt.executeUpdate();
+      stmt.close();
+      connection.close();
+    } catch (SQLException e) {
+      System.err.println("Error while inserting player into DB: " + e.getMessage());
+    }
+
     return true;
   }
 
