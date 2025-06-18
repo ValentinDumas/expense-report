@@ -49,6 +49,12 @@ public class Game {
     System.out.println("They are player number " + players.size());
 
     // JDBC call to store the new player in the database
+    savePlayer(playerName);
+
+    return true;
+  }
+
+  protected void savePlayer(String playerName) {
     try {
       // Example: replace with actual JDBC URL, user and password
       Connection connection =
@@ -66,8 +72,6 @@ public class Game {
     } catch (SQLException e) {
       System.err.println("Error while inserting player into DB: " + e.getMessage());
     }
-
-    return true;
   }
 
   public int howManyPlayers() {
